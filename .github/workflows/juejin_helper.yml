@@ -6,14 +6,17 @@ on:
   #     - main
   schedule:
     - cron: "30 21 * * *" # 该时间为UTC时间，比北京时间晚8个小时，每天早上5点半自动执行
-
+  # 也允许这个工作流在github aciton面板中手动触发
   workflow_dispatch:
 
 jobs:
   build:
+    # 安装最新的ubuntu系统
     runs-on: ubuntu-latest
     steps:
+      # 拉取最新的代码
       - uses: actions/checkout@v2
+      # 安装好Nodejs的运行环境
       - uses: actions/setup-node@v1
         with:
           node-version: 12
